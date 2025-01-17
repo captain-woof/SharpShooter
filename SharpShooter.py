@@ -182,7 +182,7 @@ class SharpShooter:
         return fgz
 
     def rc4(self, key, data):
-        S = range(256)
+        S = list(range(256))
         j = 0
         out = []
 
@@ -516,7 +516,7 @@ End Sub"""
 
         key = self.rand_key(10)
         payload_encrypted = self.rc4(key, template_code)
-        payload_encoded = base64.b64encode(payload_encrypted)
+        payload_encoded = base64.b64encode(payload_encrypted.encode()).decode()
 
         awl_payload_simple = ""
 
