@@ -167,7 +167,7 @@ class SharpShooter:
         return content
 
     def rand_key(self, n):
-        return ''.join([random.choice(string.lowercase) for i in xrange(n)])
+        return ''.join([random.choice(string.ascii_lowercase) for i in range(n)])
 
     def gzip_str(self, string_):
         fgz = BytesIO()
