@@ -160,6 +160,11 @@ class SharpShooter:
             print("\033[1;31m[!]\033[0;0m Shellcode must not contain null bytes")
 
         return args
+    
+    def read_file_binary(self, f):
+        with open(f, 'rb') as fs:
+            content = fs.read()
+        return content
 
     def read_file(self, f):
         with open(f, 'r') as fs:
@@ -438,8 +443,8 @@ End Sub"""
                     shellcode_gzip = self.gzip_str(shellcode_final)
 
                 elif (args.stageless or stageless_payload is True):
-                    rawsc = self.read_file(args.rawscfile)
-                    encoded_sc = base64.b64encode(rawsc)
+                    rawsc = self.read_file_binary(args.rawscfile)
+                    encoded_sc = base64.b64encode(rawsc).decode("utf-8")
                     #if("vbs" in file_type or "hta" in file_type):
                     #    sc_split = [encoded_sc[i:i+100] for i in range(0, len(encoded_sc), 100)]
                     #    for i in sc_split:
